@@ -21,11 +21,30 @@ const test = {
 };
 test.randObj2 = test.randObj;
 
-//console.log(test);
+
+
+
+
+
+
+
+
+
+
+//EVERYTHING BELOW THIS POINT ARE JUST FOR TESTING
+
+
+
+
+
+/*console.log(test);
 //console.log(jsSonCon(test));
-test.randObj.anotherPro = "super amazing";
-//console.log(test);
+JSON.parse(JSON.stringify(test.randObj));
+//test.randObj.anotherPro = "super amazing";
+console.log(test);
 //console.log(jsSonCon(test));
+
+
 
 
 
@@ -36,7 +55,7 @@ const test2 = {
     bool: true,
     nil: null,
     undef: undefined,
-    obj: { foo: 'bar' },
+    obj: { foo: 'bar', undef: undefined},
     arr: [1, '2'],
     regexp: /^test?$/,
     date: new Date(),
@@ -47,6 +66,10 @@ const test2 = {
 
 jSonObj = jsSonCon(test2);
 simpleSon = JSON.parse(JSON.stringify(test2));
-//console.log(jSonObj);
-//console.log(test2);
-//console.log(simpleSon);
+console.log(jSonObj);
+console.log(test2);
+console.log(simpleSon);
+JSON.parse(JSON.stringify(jSonObj.obj));
+console.log(jSonObj);
+
+jsSonCon.toSource();*/
