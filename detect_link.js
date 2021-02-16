@@ -1,3 +1,90 @@
+// The showLinkedObjPosition will return an array containing the two linked objects and each index on inside the main object.  
+
+function showLinkedObjPosition(obj) {
+
+    const allObj = [];
+    const allPotitions = [];
+    
+    const allKeys = Object.keys(obj);
+    for (let i=0; i<allKeys.length; i++) {
+        if (typeof obj[allKeys[i]] === "object") {
+            allObj.push(obj[allKeys[i]]);
+            allPotitions.push(i);     
+        };
+    };
+
+    const objValues = Object.values(allObj);
+    objValueKeys = [];
+    objValues.forEach(pre =>{objValueKeys.push(Object.keys(pre))});
+    
+    const justKeys = removeArrays(objValueKeys);
+
+    const linkTesterKey = doubleKey(justKeys);
+
+    const listOfObj = [];
+    const positions = [];
+
+    for (let i=0; i<allObj.length; i++) {
+        if (allObj[i][linkTesterKey]) {
+            listOfObj.push(allObj[i]);
+            positions.push(allPotitions[i]);
+        };
+    };
+    
+    const linkedObj = [];
+    const linkPositions = [];
+
+    for (let i=0; i<listOfObj.length; i++) {        
+        listOfObj[i][linkTesterKey] =listOfObj[i][linkTesterKey] + "something else";
+        for (let x=0; x<listOfObj.length; x++) {
+            if (listOfObj[i][linkTesterKey] === listOfObj[x][linkTesterKey] && !linkedObj.includes(listOfObj[i]) && i!=x) {
+                linkedObj.push(listOfObj[i]);
+                linkPositions.push([listOfObj[i], positions[i]]);
+                linkPositions.push([listOfObj[x], positions[x]]);
+            };
+        };
+    };
+    for (let i=0; i<listOfObj.length; i++) {        
+        listOfObj[i][linkTesterKey] = listOfObj[i][linkTesterKey].replace("something else", "");
+    };
+
+    return linkedObj, linkPositions;
+};
+
+function removeArrays(anArray) {
+    
+    const returnArray = [];
+
+    anArray.forEach(nestedArray => {
+        if (nestedArray.length === 1) {
+            nestedArray.forEach(element => {            
+                returnArray.push(element);
+            });    
+        } else {
+            returnArray.push(nestedArray);
+        }        
+    })
+    
+    return returnArray;
+};
+
+function doubleKey(listOfKeys) {
+    
+    let item = ""
+    
+    listOfKeys.forEach(key => {
+        listOfKeys.forEach(key2 => {
+            if (key === key2 && key != item) {
+                item = key;
+            }
+        })
+    })
+    
+    return item;
+};
+
+// Testing below...
+
 const test = {
     someProp: "asdasd",
     randomFun() {
@@ -23,96 +110,4 @@ const test = {
 };
 test.randObj2 = test.randObj;
 
-
-
-const testKeys = Object.keys(test);
-console.log(testKeys);
-
-allObj = [];
-allPotitions = [];
-listOfObj = [];
-positions = [];
-linkedObj = [];
-linkPositions = [];
-for (let i=0; i<testKeys.length; i++) {
-    console.log(typeof test[testKeys[i]]);
-    if (typeof test[testKeys[i]] === "object") {
-        allObj.push(test[testKeys[i]]);
-        allPotitions.push(i);        
-    }
-}
-
-
-
-const objValues = Object.values(allObj);
-console.log(objValues);
-objValueKeys = [];
-objValues.forEach(pre =>{objValueKeys.push(Object.keys(pre))});
-console.log(objValueKeys);
-
-
-function removeArrays(anArray) {
-    returnArray = []
-    anArray.forEach(nestedArray => {
-        if (nestedArray.length === 1) {
-            nestedArray.forEach(element => {            
-                console.log(element);
-                returnArray.push(element);
-            });    
-        } else {
-            returnArray.push(nestedArray);
-        };        
-    });
-    return returnArray
-};
-
-justKeys = removeArrays(objValueKeys);
-console.log(justKeys);
-
-
-
-function doubleKey(listOfKeys) {
-    let item = ""
-    listOfKeys.forEach(key => {
-        listOfKeys.forEach(key2 => {
-            if (key === key2 && key != item) {
-                item = key;
-            }
-        })
-    })
-    return item;
-};
-
-console.log(doubleKey(justKeys))
-
-const linkTesterKey = doubleKey(justKeys); 
-
-
-
-
-for (let i=0; i<allObj.length; i++) {
-    if (allObj[i][linkTesterKey]) {
-        listOfObj.push(allObj[i]);
-        positions.push(allPotitions[i]);
-    }
-}    
-
-
-
-for (let i=0; i<listOfObj.length; i++) {        
-    listOfObj[i][linkTesterKey] =listOfObj[i][linkTesterKey] + "something else";
-    console.log(listOfObj[i])
-    for (let x=0; x<listOfObj.length; x++) {
-        console.log(listOfObj[x][linkTesterKey]);
-        if (listOfObj[i][linkTesterKey] === listOfObj[x][linkTesterKey] && !linkedObj.includes(listOfObj[i]) && i!=x) {
-            linkedObj.push(listOfObj[i]);
-            linkPositions.push([listOfObj[i], positions[i]]);
-            linkPositions.push([listOfObj[x], positions[x]]);
-        }
-    }
-}
-
-
-
-console.log(linkedObj);
-console.log(linkPositions);
+console.log(showLinkedObjPosition(test))
