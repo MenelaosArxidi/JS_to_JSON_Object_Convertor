@@ -40,27 +40,77 @@ for (let i=0; i<testKeys.length; i++) {
         allObj.push(test[testKeys[i]]);
         allPotitions.push(i);        
     }
-}    
+}
+
+
+
+const objValues = Object.values(allObj);
+console.log(objValues);
+objValueKeys = [];
+objValues.forEach(pre =>{objValueKeys.push(Object.keys(pre))});
+console.log(objValueKeys);
+
+
+function removeArrays(anArray) {
+    returnArray = []
+    anArray.forEach(nestedArray => {
+        if (nestedArray.length === 1) {
+            nestedArray.forEach(element => {            
+                console.log(element);
+                returnArray.push(element);
+            });    
+        } else {
+            returnArray.push(nestedArray);
+        };        
+    });
+    return returnArray
+};
+
+justKeys = removeArrays(objValueKeys);
+console.log(justKeys);
+
+
+
+function doubleKey(listOfKeys) {
+    let item = ""
+    listOfKeys.forEach(key => {
+        listOfKeys.forEach(key2 => {
+            if (key === key2 && key != item) {
+                item = key;
+            }
+        })
+    })
+    return item;
+};
+
+console.log(doubleKey(justKeys))
+
+const linkTesterKey = doubleKey(justKeys); 
+
+
+
+
 for (let i=0; i<allObj.length; i++) {
-//listOfObj.forEach(key => {
-    if (allObj[i]["anotherPro"]) {
+    if (allObj[i][linkTesterKey]) {
         listOfObj.push(allObj[i]);
         positions.push(allPotitions[i]);
     }
 }    
+
+
+
 for (let i=0; i<listOfObj.length; i++) {        
-    listOfObj[i]["anotherPro"] = "something else";
+    listOfObj[i][linkTesterKey] =listOfObj[i][linkTesterKey] + "something else";
     console.log(listOfObj[i])
     for (let x=0; x<listOfObj.length; x++) {
-    //listOfObj.forEach(key2 => {
-        console.log(listOfObj[x]["anotherPro"]);
-        if (listOfObj[i]["anotherPro"] === listOfObj[x]["anotherPro"] && !linkedObj.includes(listOfObj[i]) && i!=x) {
+        console.log(listOfObj[x][linkTesterKey]);
+        if (listOfObj[i][linkTesterKey] === listOfObj[x][linkTesterKey] && !linkedObj.includes(listOfObj[i]) && i!=x) {
             linkedObj.push(listOfObj[i]);
             linkPositions.push([listOfObj[i], positions[i]]);
             linkPositions.push([listOfObj[x], positions[x]]);
         }
-    }//)
-}//)
+    }
+}
 
 
 
