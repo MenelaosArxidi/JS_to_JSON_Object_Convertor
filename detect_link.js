@@ -1,6 +1,6 @@
 // The showLinkedObjPosition will return an array containing the two linked objects and each index on inside the main object.  
 
-function showLinkedObjPosition(obj) {
+function showLinkedObjPositions(obj) {
 
     const allObj = [];
     const allPotitions = [];
@@ -39,8 +39,10 @@ function showLinkedObjPosition(obj) {
         for (let x=0; x<listOfObj.length; x++) {
             if (listOfObj[i][linkTesterKey] === listOfObj[x][linkTesterKey] && !linkedObj.includes(listOfObj[i]) && i!=x) {
                 linkedObj.push(listOfObj[i]);
-                linkPositions.push([listOfObj[i], positions[i]]);
-                linkPositions.push([listOfObj[x], positions[x]]);
+                //linkPositions.push([listOfObj[i], positions[i]]);
+                //linkPositions.push([listOfObj[x], positions[x]]);
+                linkPositions.push(positions[i]);
+                linkPositions.push(positions[x]);
             };
         };
     };
@@ -48,7 +50,7 @@ function showLinkedObjPosition(obj) {
         listOfObj[i][linkTesterKey] = listOfObj[i][linkTesterKey].replace("something else", "");
     };
 
-    return linkedObj, linkPositions;
+    return linkPositions;
 };
 
 function removeArrays(anArray) {
@@ -83,9 +85,11 @@ function doubleKey(listOfKeys) {
     return item;
 };
 
+module.exports = showLinkedObjPositions;
+
 // Testing below...
 
-const test = {
+/*const test = {
     someProp: "asdasd",
     randomFun() {
         return "test"
@@ -110,4 +114,4 @@ const test = {
 };
 test.randObj2 = test.randObj;
 
-console.log(showLinkedObjPosition(test))
+console.log(showLinkedObjPosition(test))*/

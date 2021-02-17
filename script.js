@@ -1,9 +1,37 @@
+const showLinkedObjPositions = require("./detect_link.js");
+
 function jsSonCon(obj) {
     const obJS = {};
     const obJSon = JSON.parse(JSON.stringify(obJS));
     return Object.assign(obJSon, obj);
     //return obJSon;
 };
+
+function jsonConverter(obj) {
+    
+    const jSonObj = {};
+    const linkedPositions = showLinkedObjPositions(obj)
+    
+    const allKeys = Object.keys(obj);
+    const objValues = Object.values(obj);
+
+    for (let i=0; i<allKeys.length; i++) {
+        if (!linkedPositions.includes(i)) {
+            jSonObj[allKeys[i]] = objValues[i]
+            //jSonObj.allKeys[i] = JSON.parse(JSON.stringify(jSonObj.allKeys[i]))
+        } else {
+
+        }
+        
+        
+    }
+    const newjSonObj = JSON.parse(JSON.stringify(jSonObj))
+    return newjSonObj;
+
+}
+
+
+
 
 
 
@@ -22,8 +50,12 @@ const test = {
 test.randObj2 = test.randObj;
 
 
+console.log(showLinkedObjPositions(test));
 
+const peos = jsonConverter(test);
+//peos.randObj2 = "skata"
 
+console.log(peos);
 
 
 
