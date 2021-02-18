@@ -58,65 +58,15 @@ const test2 = {
 test2.obj2 = test2.obj;
 
 console.log(test2);
-const wrongtest2 = JSON.parse(JSON.stringify(test2));
-console.log(wrongtest2);
+const wrongTest = JSON.parse(JSON.stringify(test2));
+console.log(wrongTest);
 
 console.log(showLinkedObjPositions(test2));
 
-const peos = jsonConverter(test2);
-console.log(peos);
-//peos.randObj2.anotherPro = "even more amazing"
-peos.obj2.foo = "happens";
-wrongtest2.obj2.foo = "happens";
-console.log(peos);
-console.log(wrongtest2);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*console.log(test);
-//console.log(jsSonCon(test));
-JSON.parse(JSON.stringify(test.randObj));
-//test.randObj.anotherPro = "super amazing";
-console.log(test);
-//console.log(jsSonCon(test));
-
-
-
-
-
-
-const test2 = {
-    str: '<script>var a = 0 > 1</script>',
-    num: 3.1415,
-    bool: true,
-    nil: null,
-    undef: undefined,
-    obj: { foo: 'bar', undef: undefined},
-    arr: [1, '2'],
-    regexp: /^test?$/,
-    date: new Date(),
-    buffer: new Buffer('data'),
-    set: new Set([1, 2, 3]),
-    map: new Map([['a', 1],['b', 2]])
-}
-
-jSonObj = jsSonCon(test2);
-simpleSon = JSON.parse(JSON.stringify(test2));
-console.log(jSonObj);
-console.log(test2);
-console.log(simpleSon);
-JSON.parse(JSON.stringify(jSonObj.obj));
-console.log(jSonObj);
-
-jsSonCon.toSource();*/
+const rightTest = jsonConverter(test2);
+console.log(rightTest);
+//rightTest.randObj2.anotherPro = "even more amazing"
+rightTest.obj2.foo = "happens";
+wrongTest.obj2.foo = "happens";
+console.log(rightTest);
+console.log(wrongTest);

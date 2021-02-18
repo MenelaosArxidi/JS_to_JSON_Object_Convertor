@@ -1,4 +1,4 @@
-// The showLinkedObjPosition will return an array containing the two linked objects and each index on inside the main object.  
+// The showLinkedObjPosition will return an array containing the two index from the linked objects inside the main object.  
 
 function showLinkedObjPositions(obj) {
 
@@ -69,6 +69,8 @@ function removeArrays(anArray) {
     
     return returnArray;
 };
+
+// The doubleKey function is temporary used only for two linked items. Its functionallity is to return a single key witch is common betwen the linked objects.
 
 function doubleKey(listOfKeys) {
     
