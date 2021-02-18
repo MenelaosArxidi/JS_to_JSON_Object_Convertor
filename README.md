@@ -1,5 +1,5 @@
 ## JS to JSON Object Convertor 
-# is a tool for converting a javascript object to a JSON object without losing any information.
+### is a tool for converting a javascript object to a JSON object without losing any information.
 
 
  [script.js](https://github.com/MenelaosArxidi/JS_to_JSON_Object_Convertor/blob/main/script.js) contains the final function `jsonConverter` witch makes the convertion from the javascript object, given as an argument, to the JSON object that will be returned.
